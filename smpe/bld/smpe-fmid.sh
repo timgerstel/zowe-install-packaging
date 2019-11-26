@@ -84,7 +84,7 @@ _copyMvsMvs "${mvsI}.$dd" "${mcsHlq}.F3" "U" "**" "PO" "5,2"
 # subtract 4 for variable record length field gives LRECL(6995)
 dd="S${prefix}ZFS"
 list=$(awk '/^'$dd'/{print $2}' $log/$parts)
-_copyUssMvs $ussI "${mcsHlq}.F4" "VB" "6995" "PO" "7500,750"
+_copyUssMvs $ussI "${mcsHlq}.F4" "VB" "6995" "PO" "8000,800"
 
 test "$debug" && echo "< _relFiles"
 }    # _relFiles
@@ -444,7 +444,7 @@ do case "$opt" in
        test ! "$IgNoRe_ErRoR" && exit 8;;                        # EXIT
   esac    # $opt
 done    # getopts
-shift $OPTIND-1
+shift $(($OPTIND-1))
 
 # set envvars
 . $here/$cfgScript -c                         # call with shell sharing

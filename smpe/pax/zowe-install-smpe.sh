@@ -216,7 +216,7 @@ do case "$opt" in
        test ! "$IgNoRe_ErRoR" && exit 8;;                        # EXIT
   esac    # $opt
 done    # getopts
-shift $OPTIND-1
+shift $(($OPTIND-1))
 
 if test ! -x "$cfgScript"
 then
@@ -241,6 +241,14 @@ test "$debug" && scripts=$scripts
 
 test "$LOG_FILE" && echo "<$(basename $0)> $@" >> $LOG_FILE
 test "$LOG_FILE" && echo "  $(date)" >> $LOG_FILE
+
+_cmd cd $here
+
+# Generate the SMP/E Workflow
+
+_cmd cd $here/ZOSMF
+chmod u+x ./build_smpe_wf.sh
+./build_smpe_wf.sh
 
 _cmd cd $here
 
@@ -275,7 +283,7 @@ _installMVS SZWESAMP "FB" "80" "PO" "10,2"
 
 # install SZWEZFS members
 list=""     # file names include path based on $here
-list="$list USS/ZWESHPAX.sh"
+list="$list USS/ZWESHPAX.sh ZOSMF/WORKFLOW.xml"
 _installUSS $ussI
 
 # remove install script if requested
