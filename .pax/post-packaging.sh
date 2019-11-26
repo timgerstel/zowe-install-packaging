@@ -32,6 +32,21 @@ ZOWE_VERSION_MAJOR=$(echo "${ZOWE_VERSION}" | awk -F. '{print $1}')
 # pad ZOWE_VERSION_MAJOR to be at least 3 chars long, then keep last 3
 FMID_VERSION=$(echo "00${ZOWE_VERSION_MAJOR}" | sed 's/.*\(...\)$/\1/')
 
+#Generate JCL boilerplates
+for entry in "./.pax/ascii/smpe/pax/ZOSMF/vtls/"/*
+do
+  if [ ${entry: -4} == ".vtl" ]
+  then
+    MVS_PATH="./.pax/ascii/smpe/pax/MVS/"
+    VTL=${entry}
+    BASE=${VTL%.*}
+    YAML=${BASE}".yml"
+    JCL=${BASE/\/*\//}".jcl"
+    JCL=${MVS_PATH}${JCL:1}
+    java -jar vtl-cli.jar --yaml-context ${YAML} ${VTL} -o ${JCL}
+  fi
+done
+
 # create smpe.pax
 cd smpe/pax
 pax -x os390 -w -f ../../smpe.pax *
