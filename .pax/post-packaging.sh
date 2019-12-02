@@ -33,7 +33,7 @@ ZOWE_VERSION_MAJOR=$(echo "${ZOWE_VERSION}" | awk -F. '{print $1}')
 FMID_VERSION=$(echo "00${ZOWE_VERSION_MAJOR}" | sed 's/.*\(...\)$/\1/')
 
 #Generate JCL boilerplates
-for entry in "./.pax/ascii/smpe/pax/ZOSMF/vtls"/*
+for entry in $(ls "./.pax/ascii/smpe/pax/ZOSMF/vtls/")
 do
   if [ "${entry##*.}" = "vtl" ]
   then
