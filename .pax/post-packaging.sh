@@ -38,9 +38,10 @@ do
   if [ "${entry##*.}" = "vtl" ]
   then
     MVS_PATH="./smpe/pax/MVS/"
+    LOCAL_PATH="./smpe/pax/ZOSMF/vtls/"
     VTL=${entry}
-    BASE=${VTL%.*}
-    YAML=${BASE}".yml"
+    YAML=${LOCAL_PATH}${BASE}".yml"
+    BASE=${LOCAL_PATH}${VTL%.*}
     JCL=${MVS_PATH}"$(basename -- $BASE).jcl"
     java -jar /ZOWE/vtl-cli/vtl-cli.jar --yaml-context ${YAML} ${VTL} -o ${JCL}
   fi
