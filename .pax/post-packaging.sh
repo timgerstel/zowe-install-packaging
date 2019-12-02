@@ -41,7 +41,7 @@ do
     VTL=${entry}
     BASE=${VTL%.*}
     YAML=${BASE}".yml"
-    JCL=${MVS_PATH}${BASE/\/*\//}".jcl"
+    JCL=${MVS_PATH}"$(basename -- $BASE).jcl"
     java -jar vtl-cli.jar --yaml-context ${YAML} ${VTL} -o ${JCL}
   fi
 done
