@@ -41,7 +41,7 @@ do
     LOCAL_PATH="./smpe/pax/ZOSMF/vtls/"
     VTL=${LOCAL_PATH}${entry}
     BASE=${VTL%.*}
-    YAML=${LOCAL_PATH}${BASE}".yml"
+    YAML=${BASE}".yml"
     JCL=${MVS_PATH}"$(basename -- $BASE).jcl"
     java -jar /ZOWE/vtl-cli/vtl-cli.jar --yaml-context ${YAML} ${VTL} -o ${JCL}
   fi
