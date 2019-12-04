@@ -39,11 +39,13 @@ do
   then
     MVS_PATH="./smpe/pax/MVS/"
     LOCAL_PATH="./smpe/pax/ZOSMF/vtls/"
-    VTL=${LOCAL_PATH}${entry}
+    VTL=${LOCAL_PATH}${entry} 
     BASE=${VTL%.*}
     YAML=${BASE}".yml"
     JCL=${MVS_PATH}"$(basename -- $BASE).jcl"
     java -jar /ZOWE/vtl-cli/vtl-cli.jar --yaml-context ${YAML} ${VTL} -o ${JCL}
+    sed 's/^/+/;s/$/+/' ${JCL}
+
   fi
 done
 
