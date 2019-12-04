@@ -43,7 +43,7 @@ do
     BASE=${VTL%.*}
     YAML=${BASE}".yml"
     JCL=${MVS_PATH}"$(basename -- $BASE).jcl"
-    java -jar /ZOWE/vtl-cli/vtl-cli.jar --yaml-context ${YAML} ${VTL} -o ${JCL} -oe EBCDIC
+    java -jar /ZOWE/vtl-cli/vtl-cli.jar --yaml-context ${YAML} ${VTL} -o ${JCL} -oe ASCII
     sed 's/^/+/;s/$/+/' ${JCL}
 
   fi
