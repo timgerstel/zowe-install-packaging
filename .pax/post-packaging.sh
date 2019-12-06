@@ -44,8 +44,6 @@ do
     YAML=${BASE}".yml"
     JCL=${MVS_PATH}"$(basename -- $BASE).jcl"
     java -jar /ZOWE/vtl-cli/vtl-cli.jar -ie Cp1140 --yaml-context ${YAML} ${VTL} -o ${JCL} -oe Cp1140
-    sed 's/^/+/;s/$/+/' ${JCL}
-
   fi
 done
 
