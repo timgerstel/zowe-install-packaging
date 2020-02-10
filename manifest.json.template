@@ -172,6 +172,10 @@
         "repository": "zowe-cli",
         "tag": "v2.36.3",
         "destinations": ["Zowe CLI Package"]
+      }, {
+        "repository": "zowe-cli-scs-plugin",
+        "tag": "master",
+        "destinations": ["Zowe CLI Package"]
       }]
     }, {
       "componentGroup": "IBM&reg CICS&reg Plug-in for Zowe CLI",
